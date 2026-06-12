@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+*.dylib
+
+# Virtual environment
+cgan_env/
+venv/
+env/
+.venv/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Model weights & large binary files
+*.pth
+*.pt
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.npz
+*.npy
+
+# Datasets (usually large)
+datasets/
+
+# Outputs (generated images)
+outputs/
+
+# Training checkpoints
+training/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+logs/

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cGAN Studio — AI Image Generator</title>
+  <meta name="description" content="Generate stunning AI images with a Conditional GAN trained on CIFAR-10. Choose any class and watch your AI paint in real-time." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ── Background particles ─────────────────────────────────────────── -->
+<div class="bg-grid"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- ── Header ──────────────────────────────────────────────────────── -->
+<header class="header">
+  <div class="logo">
+    <span class="logo-icon">⚡</span>
+    <span class="logo-text">cGAN<span class="logo-accent">Studio</span></span>
+  </div>
+  <nav class="nav">
+    <button class="nav-btn active" data-tab="generate" id="nav-generate">Generate</button>
+    <button class="nav-btn" data-tab="gallery" id="nav-gallery">Gallery</button>
+  </nav>
+  <div class="header-badge">
+    <span class="badge-dot"></span>
+    Model Ready
+  </div>
+</header>
+
+<!-- ── Main ────────────────────────────────────────────────────────── -->
+<main class="main">
+
+  <!-- GENERATE TAB -->
+  <section class="tab-section active" id="tab-generate">
+    <div class="hero">
+      <h1 class="hero-title">Generate with AI</h1>
+      <p class="hero-sub">Pick a class, set the count, and watch your neural network create.</p>
+    </div>
+
+    <div class="controls-card">
+      <!-- Class Selector -->
+      <div class="control-group">
+        <label class="control-label">Select Class</label>
+        <div class="class-grid" id="class-grid">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <!-- Count Slider -->
+      <div class="control-group">
+        <label class="control-label">
+          Number of Images
+          <span class="count-badge" id="count-display">1</span>
+        </label>
+        <div class="slider-wrap">
+          <input type="range" id="num-images" min="1" max="9" value="1" class="slider" />
+          <div class="slider-ticks">
+            <span>1</span><span>3</span><span>6</span><span>9</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Generate Button -->
+      <button class="generate-btn" id="generate-btn">
+        <span class="btn-icon">✨</span>
+        <span class="btn-text">Generate Images</span>
+        <div class="btn-shimmer"></div>
+      </button>
+    </div>
+
+    <!-- Output area -->
+    <div class="output-section" id="output-section">
+      <div class="output-header" id="output-header" style="display:none">
+        <div class="output-meta" id="output-meta"></div>
+        <button class="download-all-btn" id="download-all-btn">⬇ Download All</button>
+      </div>
+      <div class="image-grid" id="image-grid">
+        <div class="empty-state" id="empty-state">
+          <div class="empty-icon">🎨</div>
+          <div class="empty-text">Your generated images will appear here</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY TAB -->
+  <section class="tab-section" id="tab-gallery">
+    <div class="hero">
+      <h1 class="hero-title">Training Gallery</h1>
+      <p class="hero-sub">Browse epoch-by-epoch samples from your training run.</p>
+    </div>
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="loading-state">
+        <div class="spinner"></div>
+        Loading gallery…
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Loading overlay ─────────────────────────────────────────────── -->
+<div class="loading-overlay" id="loading-overlay">
+  <div class="loading-card">
+    <div class="neural-spinner">
+      <div class="ns-ring ns-ring-1"></div>
+      <div class="ns-ring ns-ring-2"></div>
+      <div class="ns-ring ns-ring-3"></div>
+      <div class="ns-core">🧠</div>
+    </div>
+    <div class="loading-title">Generating…</div>
+    <div class="loading-sub" id="loading-sub">Running inference through the Generator</div>
+    <div class="loading-bar"><div class="loading-fill" id="loading-fill"></div></div>
+  </div>
+</div>
+
+<!-- ── Lightbox ────────────────────────────────────────────────────── -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">✕</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="Generated image" />
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+  <button class="lightbox-dl" id="lightbox-dl">⬇ Download</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
